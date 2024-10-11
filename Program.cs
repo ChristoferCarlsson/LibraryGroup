@@ -4,9 +4,10 @@
     {
         static void Main(string[] args)
         {
-           
-
             Console.WriteLine("Välkommen!");
+
+            //Vi skapar biblioteket
+            Library library = new Library();
 
             bool running = true;
             while (running) { 
@@ -20,9 +21,23 @@
 
                 string input = Console.ReadLine();
                 switch (input) {
-
                     case "1":
+                        Console.WriteLine("Vad heter boken?");
+                        string title = Console.ReadLine();
+
+                        Console.WriteLine("Vad heter författaren?");
+                        string author = Console.ReadLine();
+
+                        Console.WriteLine("Vad har den för ISBN?");
+                        string isbn = Console.ReadLine();
+
+                        library.CreateBook(title, author, isbn);
+
+                        Console.WriteLine("Boken är nu tillagd!");
+                        //Ge lite väntetid för effekt
+                        Thread.Sleep(1000);
                         break;
+
                     case "2":
                         break;
                     case "3":
