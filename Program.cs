@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            List<Books> bokLista = new List<Books>();
+           
 
             Console.WriteLine("Välkommen!");
 
