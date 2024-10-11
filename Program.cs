@@ -4,6 +4,8 @@
     {
         static void Main(string[] args)
         {
+           
+
             Console.WriteLine("Välkommen!");
 
             bool running = true;
