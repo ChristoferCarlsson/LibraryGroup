@@ -41,6 +41,10 @@ namespace LibraryGroup
                         break;
 
                     case "2":
+                        Console.WriteLine("Ange titel på den bok du vill ta bort från biblioteket: ");
+                        string bookToRemove = Console.ReadLine();
+                        library.RemoveBook(bookToRemove);
+                        Thread.Sleep(1000);//Ge lite väntetid för effekt
                         break;
                     case "3":
                         Console.WriteLine("Ange bokens författare");

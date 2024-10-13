@@ -31,5 +31,25 @@ namespace LibraryGroup
             }
             return foundBook;
         }
+        //Metod för att ta bort bok från listan. 
+        public void RemoveBook(string title)
+        {
+            bool bookFound = false;
+            foreach (var book in bokLista)
+            {
+                if (book.Title == title)
+                {
+                    bokLista.Remove(book);
+                    Console.WriteLine($"Bok med titeln: {title} har tagits bort!");
+                    bookFound = true;
+                    break;
+                }
+            }
+            if (!bookFound)
+            {
+                Console.WriteLine($"Ingen bok med titeln: {title} finns i biblioteket");
+            }
+        }
+
     }
 }
