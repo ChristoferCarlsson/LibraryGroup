@@ -18,15 +18,13 @@ namespace LibraryGroup
 
         }
         // Sökmetod för att hitta bok av en specifik titel
-        public List<Book> SearchBookByTitle(string userSearchTitle)
+        public List<Book> SearchBookByAuthor(string userSearchByAuthor)
         {
             List<Book > foundBook = new List<Book>();
-
-            string bookByTitle = userSearchTitle;
-
+            string bookByAuthor = userSearchByAuthor;
             foreach (Book book in bokLista)
             {
-                if (book.Title.Contains(bookByTitle))
+                if (book.Author.Contains(bookByAuthor))
                 {
                     foundBook.Add(book);
                 }
