@@ -16,7 +16,7 @@ namespace LibraryGroup
 
                 Console.WriteLine("1. Lägg till en bok");
                 Console.WriteLine("2. Ta bort en bok");
-                Console.WriteLine("3. Sök efter en bok enligt ens författare");
+                Console.WriteLine("3. Sök efter en bok enligt författare");
                 Console.WriteLine("4. Visa alla böcker");
                 Console.WriteLine("5. Checka ut/returnera bok");
                 Console.WriteLine("6. Avsluta");
