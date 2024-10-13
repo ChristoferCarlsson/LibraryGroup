@@ -1,4 +1,6 @@
-﻿namespace LibraryGroup
+﻿using System.Linq;
+
+namespace LibraryGroup
 {
     internal class Program
     {
@@ -41,6 +43,21 @@
                     case "2":
                         break;
                     case "3":
+                        Console.WriteLine("Ange bokens författare");
+                        string userSearchAuthor = Console.ReadLine();
+                        List<Book> foundBook = library.SearchBookByAuthor(userSearchAuthor);
+                        if (foundBook != null)
+                        {
+                            foreach (Book book in foundBook)
+                            {
+                                Console.Write("Följande bok matchade din sökning - ");
+                                Console.WriteLine($"Titel: {book.Title}, Författare: {book.Author}, ISBN: {book.ISBN}");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ingen bok matchade din sökning");
+                        }
                         break;
                     case "4":
                         break;

@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace LibraryGroup
 {
-    internal class Library
+    public class Library
     {
         List<Book> bokLista = new List<Book>();
 
@@ -16,6 +16,20 @@ namespace LibraryGroup
         {
             bokLista.Add(new Book(title, author, isbn, false));
 
+        }
+        // Sökmetod för att hitta bok av en specifik titel
+        public List<Book> SearchBookByAuthor(string userSearchByAuthor)
+        {
+            List<Book > foundBook = new List<Book>();
+            string bookByAuthor = userSearchByAuthor;
+            foreach (Book book in bokLista)
+            {
+                if (book.Author.Contains(bookByAuthor))
+                {
+                    foundBook.Add(book);
+                }
+            }
+            return foundBook;
         }
     }
 }
