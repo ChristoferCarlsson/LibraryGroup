@@ -50,7 +50,7 @@ namespace LibraryGroup
                         Console.WriteLine("Ange bokens författare");
                         string userSearchAuthor = Console.ReadLine();
                         List<Book> foundBook = library.SearchBookByAuthor(userSearchAuthor);
-                        if (foundBook != null)
+                        if (foundBook != null && foundBook.Count > 0)
                         {
                             foreach (Book book in foundBook)
                             {
