@@ -49,10 +49,10 @@ namespace LibraryGroup
                     case "3":
                         Console.WriteLine("Ange bokens författare");
                         string userSearchAuthor = Console.ReadLine();
-                        List<Book> foundBook = library.SearchBookByAuthor(userSearchAuthor);
-                        if (foundBook != null && foundBook.Count > 0)
+                        List<Book> foundBooks = library.SearchBookByAuthor(userSearchAuthor);
+                        if (foundBooks != null && foundBooks.Count > 0)
                         {
-                            foreach (Book book in foundBook)
+                            foreach (Book book in foundBooks)
                             {
                                 Console.Write("Följande bok matchade din sökning - ");
                                 Console.WriteLine($"Titel: {book.Title}, Författare: {book.Author}, ISBN: {book.ISBN}");
@@ -62,6 +62,8 @@ namespace LibraryGroup
                         {
                             Console.WriteLine("Ingen bok matchade din sökning");
                         }
+                        // Ge lite väntetid för effekt
+                        Thread.Sleep(1000);
                         break;
                     case "4":
                         break;

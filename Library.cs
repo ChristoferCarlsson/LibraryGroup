@@ -17,19 +17,18 @@ namespace LibraryGroup
             bokLista.Add(new Book(title, author, isbn, false));
 
         }
-        // Sökmetod för att hitta bok av en specifik titel
+        // Sökmetod för att hitta bok av en specifik författare
         public List<Book> SearchBookByAuthor(string userSearchByAuthor)
         {
-            List<Book > foundBook = new List<Book>();
-            string bookByAuthor = userSearchByAuthor;
+            List<Book > foundBooks = new List<Book>();
             foreach (Book book in bokLista)
             {
-                if (book.Author.Contains(bookByAuthor))
+                if (book.Author.Contains(userSearchByAuthor))
                 {
-                    foundBook.Add(book);
+                    foundBooks.Add(book);
                 }
             }
-            return foundBook;
+            return foundBooks;
         }
         //Metod för att ta bort bok från listan. 
         public void RemoveBook(string title)
