@@ -49,7 +49,26 @@ namespace LibraryGroup
             {
                 Console.WriteLine($"Ingen bok med titeln: {title} finns i biblioteket");
             }
+
         }
+        // Metod för att visa alla böcker i samlingen
+        public void ShowAllBooks()
+        {
+            if (bokLista.Count == 0)
+            {
+                Console.WriteLine("Det finns inga böcker i samlingen.");
+            }
+            else
+            {
+                Console.WriteLine("\nBöcker i samlingen:");
+                foreach (Book book in bokLista)
+                {
+                    Console.WriteLine($"Titel: {book.Title}, Författare: {book.Author}, ISBN: {book.ISBN}, Utlånad: {(book.checkedOut ? "Ja" : "Nej")}");
+                }
+            }
+
+        }
+
 
     }
 }

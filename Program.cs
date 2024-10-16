@@ -64,6 +64,8 @@ namespace LibraryGroup
                         }
                         break;
                     case "4":
+                        // Anropar metoden för att visa alla böcker
+                        library.ShowAllBooks();
                         break;
                     case "5":
                         break;
