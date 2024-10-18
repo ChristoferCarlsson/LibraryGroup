@@ -65,9 +65,25 @@ namespace LibraryGroup
                     Console.WriteLine($"Titel: {book.Title}, Författare: {book.Author}, ISBN: {book.ISBN}, Utlånad: {(book.checkedOut ? "Ja" : "Nej")}");
                 }
             }
+        }
+            // Metod för att lämna tillbaka en bok
+
+            public bool ReturnBook(string isbn)
+            {
+                foreach (Book book in bokLista)
+                {
+                    if (book.ISBN == isbn && book.checkedOut )
+                    {
+                        book.checkedOut = false;
+                        Console.WriteLine($"Boken '{book.Title}' har lämnats tillbaka.");
+                        return true;
+                    }
+                }
+                Console.WriteLine("Boken finns inte eller är inte utlånad.");
+                return false;
+            }
 
         }
 
 
     }
-}

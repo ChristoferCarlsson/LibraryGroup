@@ -13,6 +13,8 @@ namespace LibraryGroup
         public string Author { get; set; }
         public string ISBN { get; set; }
         public bool checkedOut { get; set; }
+       
+
         public Book(string title, string author, string isbn, bool checkedout)
         {
             Title = title;
