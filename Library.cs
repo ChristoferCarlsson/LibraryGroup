@@ -18,19 +18,17 @@ namespace LibraryGroup
             bokLista.Add(new Book(title, author, isbn, false));
 
         }
-        // Sökmetod för att hitta bok av en specifik titel
+        // Sökmetod för att hitta bok av en specifik författare
         public List<Book> SearchBookByAuthor(string userSearchByAuthor)
         {
-            List<Book> foundBook = new List<Book>();
-            string bookByAuthor = userSearchByAuthor;
             foreach (Book book in bokLista)
             {
-                if (book.Author.Contains(bookByAuthor))
+                if (book.Author.Contains(userSearchByAuthor))
                 {
-                    foundBook.Add(book);
+                    foundBooks.Add(book);
                 }
             }
-            return foundBook;
+            return foundBooks;
         }
         //Metod för att ta bort bok från listan. 
         public void RemoveBook(string title)
@@ -50,8 +48,26 @@ namespace LibraryGroup
             {
                 Console.WriteLine($"Ingen bok med titeln: {title} finns i biblioteket");
             }
+
         }
-        //Skapar if sats om boekn finns lånas den ut om inte kan man inte låna
+        // Metod för att visa alla böcker i samlingen
+        public void ShowAllBooks()
+        {
+            if (bokLista.Count == 0)
+            {
+                Console.WriteLine("Det finns inga böcker i samlingen.");
+            }
+            else
+            {
+                Console.WriteLine("\nBöcker i samlingen:");
+                foreach (Book book in bokLista)
+                {
+                    Console.WriteLine($"Titel: {book.Title}, Författare: {book.Author}, ISBN: {book.ISBN}, Utlånad: {(book.checkedOut ? "Ja" : "Nej")}");
+                }
+            }
+        }
+
+        //Skapar if sats om boken finns lånas den ut om inte kan man inte låna
         public void CheckOutBooks(string isbn)
         {
             foreach (Book book in bokLista)
@@ -78,7 +94,25 @@ namespace LibraryGroup
 
                 }
 
+            // Metod för att lämna tillbaka en bok
+
+            public bool ReturnBook(string isbn)
+            {
+                foreach (Book book in bokLista)
+                {
+                    if (book.ISBN == isbn && book.checkedOut )
+                    {
+                        book.checkedOut = false;
+                        Console.WriteLine($"Boken '{book.Title}' har lämnats tillbaka.");
+                        return true;
+                    }
+                }
+                Console.WriteLine("Boken finns inte eller är inte utlånad.");
+                return false;
             }
+
         }
-    }
+
+     }
+  }
 }

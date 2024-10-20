@@ -18,8 +18,9 @@ namespace LibraryGroup
                 Console.WriteLine("2. Ta bort en bok");
                 Console.WriteLine("3. Sök efter en bok enligt författare");
                 Console.WriteLine("4. Visa alla böcker");
-                Console.WriteLine("5. Checka ut/returnera bok");
-                Console.WriteLine("6. Avsluta");
+                Console.WriteLine("5. Checka ut");
+                Console.WriteLine("6. Retunera");
+                Console.WriteLine("7.Avsluta");
 
                 string input = Console.ReadLine();
                 switch (input) {
@@ -49,10 +50,10 @@ namespace LibraryGroup
                     case "3":
                         Console.WriteLine("Ange bokens författare");
                         string userSearchAuthor = Console.ReadLine();
-                        List<Book> foundBook = library.SearchBookByAuthor(userSearchAuthor);
-                        if (foundBook != null && foundBook.Count > 0)
+                        List<Book> foundBooks = library.SearchBookByAuthor(userSearchAuthor);
+                        if (foundBooks != null && foundBooks.Count > 0)
                         {
-                            foreach (Book book in foundBook)
+                            foreach (Book book in foundBooks)
                             {
                                 Console.Write("Följande bok matchade din sökning - ");
                                 Console.WriteLine($"Titel: {book.Title}, Författare: {book.Author}, ISBN: {book.ISBN}");
@@ -62,15 +63,29 @@ namespace LibraryGroup
                         {
                             Console.WriteLine("Ingen bok matchade din sökning");
                         }
+                        // Ge lite väntetid för effekt
+                        Thread.Sleep(1000);
                         break;
                     case "4":
+                        // Anropar metoden för att visa alla böcker
+                        library.ShowAllBooks();
                         break;
+
                     case "5":
                         Console.WriteLine("Vad har boken är IBSN");
                         string bok = Console.ReadLine();
                         library.CheckOutBooks(bok);
                         break;
+
                     case "6":
+                        // Returnera en bok
+                        Console.WriteLine("Ange ISBN på boken du vill returnera:");
+                        string isbnToReturn = Console.ReadLine();
+                        library.ReturnBook(isbnToReturn);
+                        break;
+
+                        break;
+                    case "7":
                         running = false;
                         break;
 
