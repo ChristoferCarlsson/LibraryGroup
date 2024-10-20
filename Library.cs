@@ -21,6 +21,7 @@ namespace LibraryGroup
         // Sökmetod för att hitta bok av en specifik författare
         public List<Book> SearchBookByAuthor(string userSearchByAuthor)
         {
+            List<Book> foundBooks = new List<Book>();
             foreach (Book book in bokLista)
             {
                 if (book.Author.Contains(userSearchByAuthor))
@@ -94,25 +95,25 @@ namespace LibraryGroup
 
                 }
 
-            // Metod för att lämna tillbaka en bok
+            }
+        }
+                // Metod för att lämna tillbaka en bok
 
-            public bool ReturnBook(string isbn)
+        public bool ReturnBook(string isbn)
+        {
+            foreach (Book book in bokLista)
             {
-                foreach (Book book in bokLista)
+                if (book.ISBN == isbn && book.checkedOut )
                 {
-                    if (book.ISBN == isbn && book.checkedOut )
-                    {
-                        book.checkedOut = false;
-                        Console.WriteLine($"Boken '{book.Title}' har lämnats tillbaka.");
-                        return true;
-                    }
+                    book.checkedOut = false;
+                    Console.WriteLine($"Boken '{book.Title}' har lämnats tillbaka.");
+                    return true;
                 }
+            }
                 Console.WriteLine("Boken finns inte eller är inte utlånad.");
                 return false;
-            }
-
         }
 
-     }
-  }
+    }
+
 }
