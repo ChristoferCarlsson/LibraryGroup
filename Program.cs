@@ -1,30 +1,25 @@
-﻿using System.Linq;
-
-namespace LibraryGroup
+﻿namespace LibraryGroup
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Välkommen!");
 
-            //Vi skapar biblioteket
+            //Vi Välkommnar och skapar biblioteket
+            Console.WriteLine("Välkommen!");
             Library library = new Library();
 
+            //Vi skapar en program loop
             bool running = true;
-            while (running) { 
+            while (running) {
 
-                Console.WriteLine("1. Lägg till en bok");
-                Console.WriteLine("2. Ta bort en bok");
-                Console.WriteLine("3. Sök efter en bok enligt författare");
-                Console.WriteLine("4. Visa alla böcker");
-                Console.WriteLine("5. Checka ut");
-                Console.WriteLine("6. Retunera");
-                Console.WriteLine("7.Avsluta");
-
+                printList();
                 string input = Console.ReadLine();
+
                 switch (input) {
+
                     case "1":
+                        //Vi skapar en bok
                         Console.WriteLine("Vad heter boken?");
                         string title = Console.ReadLine();
 
@@ -36,55 +31,47 @@ namespace LibraryGroup
 
                         library.CreateBook(title, author, isbn);
 
-                        Console.WriteLine("Boken är nu tillagd!");
                         //Ge lite väntetid för effekt
                         Thread.Sleep(1000);
+                        Console.Clear();
                         break;
 
                     case "2":
+                        //Vi tar bort en bok
                         Console.WriteLine("Ange titel på den bok du vill ta bort från biblioteket: ");
                         string bookToRemove = Console.ReadLine();
                         library.RemoveBook(bookToRemove);
                         Thread.Sleep(1000);//Ge lite väntetid för effekt
+                        Console.Clear();
                         break;
+
                     case "3":
                         Console.WriteLine("Ange bokens författare");
                         string userSearchAuthor = Console.ReadLine();
-                        List<Book> foundBooks = library.SearchBookByAuthor(userSearchAuthor);
-                        if (foundBooks != null && foundBooks.Count > 0)
-                        {
-                            foreach (Book book in foundBooks)
-                            {
-                                Console.Write("Följande bok matchade din sökning - ");
-                                Console.WriteLine($"Titel: {book.Title}, Författare: {book.Author}, ISBN: {book.ISBN}");
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Ingen bok matchade din sökning");
-                        }
-                        // Ge lite väntetid för effekt
+                        library.SearchBook(userSearchAuthor);
                         Thread.Sleep(1000);
                         break;
+
                     case "4":
                         // Anropar metoden för att visa alla böcker
                         library.ShowAllBooks();
+                        Thread.Sleep(1000);
                         break;
 
                     case "5":
                         Console.WriteLine("Vad har boken är IBSN");
-                        string bok = Console.ReadLine();
-                        library.CheckOutBooks(bok);
+                        library.checkoutReturn(Console.ReadLine(), true);
+                        Thread.Sleep(1000);
+                        Console.Clear();
                         break;
 
                     case "6":
-                        // Returnera en bok
-                        Console.WriteLine("Ange ISBN på boken du vill returnera:");
-                        string isbnToReturn = Console.ReadLine();
-                        library.ReturnBook(isbnToReturn);
+                        Console.WriteLine("Vad har boken är IBSN");
+                        library.checkoutReturn(Console.ReadLine(), false);
+                        Thread.Sleep(1000);
+                        Console.Clear();
                         break;
 
-                        break;
                     case "7":
                         running = false;
                         break;
@@ -96,6 +83,18 @@ namespace LibraryGroup
                 }
 
             }
+        }
+
+        //Listan som visas i början av programmet
+        static void printList()
+        {
+            Console.WriteLine("1. Lägg till en bok");
+            Console.WriteLine("2. Ta bort en bok");
+            Console.WriteLine("3. Sök efter en bok enligt författare");
+            Console.WriteLine("4. Visa alla böcker");
+            Console.WriteLine("5. Checka ut bok");
+            Console.WriteLine("6. Returnera bok");
+            Console.WriteLine("7. Avsluta");
         }
     }
 }
