@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -20,7 +21,7 @@ namespace LibraryGroup
         // Sökmetod för att hitta bok av en specifik titel
         public List<Book> SearchBookByAuthor(string userSearchByAuthor)
         {
-            List<Book > foundBook = new List<Book>();
+            List<Book> foundBook = new List<Book>();
             string bookByAuthor = userSearchByAuthor;
             foreach (Book book in bokLista)
             {
@@ -50,6 +51,34 @@ namespace LibraryGroup
                 Console.WriteLine($"Ingen bok med titeln: {title} finns i biblioteket");
             }
         }
+        //Skapar if sats om boekn finns lånas den ut om inte kan man inte låna
+        public void CheckOutBooks(string isbn)
+        {
+            foreach (Book book in bokLista)
+            {
+                if (book.ISBN == isbn && !book.checkedOut)
+                {
+                    book.checkedOut = true;
+                    Console.WriteLine($"Du har checkat ut boken \"{book.Title}\"");
+                    break;
+                }
+                else
+                {
+                    if (book.ISBN != isbn)
+                    {
+                        Console.WriteLine($"Boken finns inte.");
+                        break;
+                    }
 
+                    else
+                    {
+                        Console.WriteLine($"Boken \"{book.Title}\" är redan utlånad.");
+                        break;
+                    }
+
+                }
+
+            }
+        }
     }
 }

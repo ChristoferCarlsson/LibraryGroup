@@ -66,6 +66,9 @@ namespace LibraryGroup
                     case "4":
                         break;
                     case "5":
+                        Console.WriteLine("Vad har boken är IBSN");
+                        string bok = Console.ReadLine();
+                        library.CheckOutBooks(bok);
                         break;
                     case "6":
                         running = false;
